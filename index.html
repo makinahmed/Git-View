@@ -26,30 +26,27 @@
     </div>
 
     <!-- buttons  -->
-    <!-- <button id="">Followers</button> -->
-    <!-- repositories  -->
+    <button onclick="showFollowers()" class="btn btn-success mx-auto my-5" id="followers-btn">Followers</button>
+    <button onclick="showRepository()" class="btn btn-success mx-auto my-5" id="repositories-btn">Repositories</button>
 
-    <div class="row ">
+
+ 
+
+
+    <!-- myProfile and repositories  -->
+    <div class="row " id="homePage">
         <div class="col-lg-3 ">
             <div id="profile" class="border-0 text-center" style="width: 15rem;"></div>
         </div>
-        <div class="col-lg-8">
+        <!-- repositories -->
+        <div id="repositories" class="col-lg-8">
             <div class="row text-center g-4" id="subscriptions"></div>
         </div>
+        <!-- Followers -->
+        <div id="follower-container" class="col-lg-8">
+            <div class="row" id="followers-container"></div>
+        </div>
     </div>
-
-    <!-- profile  -->
-
-    <!-- subscriptions  -->
-
-
-
-
-
-
-
-
-
     <!-- copyright  -->
     <p style="margin-top: 300px;" class="fs-5 text-center">&copy;Copyright Makin Ahmed 2021</p>
     <!-- js  -->

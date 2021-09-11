@@ -1,4 +1,8 @@
-// let userName = document.getElementById('userName');
+let repositoriesBtn = document.getElementById('repositories-btn')
+let followersBtn = document.getElementById('followers-btn')
+repositoriesBtn.style.display = 'none'
+followersBtn.style.display = 'none'
+
 
 const loadData = () => {
     let input = document.getElementById('input-field')
@@ -12,10 +16,9 @@ const loadData = () => {
 
 }
 
-
+// myprofile 
 
 const displayProfile = (user) => {
-    document.getElementById('findUser').style.display = 'none'
     let profile = document.getElementById('profile');
     let div = document.createElement('div')
     div.classList.add('card')
@@ -32,7 +35,11 @@ const displayProfile = (user) => {
                     </div>
     `
     profile.appendChild(div);
+    document.getElementById('findUser').style.display = 'none'
+    repositoriesBtn.style.display = 'block'
+followersBtn.style.display = 'block'
     loadSubscriptions(user)
+
 }
 
 // subscription
@@ -67,3 +74,41 @@ const displaySubscriptions = (data) => {
     })
 }
 
+const loadFollowers = () => {
+    fetch(`https://api.github.com/users/makinahmed/followers`)
+        .then(res => res.json())
+        .then(data => displayFollowers(data))
+}
+
+const displayFollowers = (data) => {
+    let followers = document.getElementById('followers-container')
+    data.map(follower => {
+        let div = document.createElement('div')
+        div.classList.add('card')
+        div.classList.add('col-lg-3')
+        div.innerHTML = ` 
+        <img src="${follower.avatar_url}" class="card-img-top" style="width:50%; height: 50%">
+        <h3>Name : ${follower.login}</h3>
+        <a  class="btn btn-primary w-50 mb-3 mx-auto" href="${follower.url}|| 'NOT FOUND!'">Visit Repository</a> 
+      
+        `
+        followers.appendChild(div);
+    })
+}
+
+
+
+
+
+const showFollowers = () => {
+    document.getElementById('repositories').style.display = 'none'
+    loadFollowers();
+    document.getElementById('follower-container').style.display = 'block'
+
+}
+
+
+const showRepository = () => {
+    document.getElementById('follower-container').style.display = 'none'
+    document.getElementById('repositories').style.display = 'block'
+}
